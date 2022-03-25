@@ -11,15 +11,14 @@ class Paddle(Actor):
         
         Args:Args:
             body: A new instance of Body.
-            animation: A new instance of Animation.
             debug: If it is being debugged. 
         """
         super().__init__(debug)
         self._body = body
-        self._animation = animation
+        self._animation = animation #Do we need this?
 
-    def get_animation(self):
-        """Gets the bat's animation.
+    def get_animation(self): #Does the paddle have animation???
+        """Gets the paddles's animation.
         
         Returns:
             An instance of Animation.
@@ -41,13 +40,15 @@ class Paddle(Actor):
         new_position = position.add(velocity)
         self._body.set_position(new_position)
 
-    def swing_left(self):
-        """Steers the bat to the left."""
+    def move_up(self):
+        """Moves the paddle up"""
+        
         velocity = Point(-PADDLE_VELOCITY, 0)
         self._body.set_velocity(velocity)
         
-    def swing_right(self):
-        """Steers the paddle to the right."""
+    def move_down(self):
+        """Moves the paddle down"""
+        
         velocity = Point(PADDLE_VELOCITY, 0)
         self._body.set_velocity(velocity)
     

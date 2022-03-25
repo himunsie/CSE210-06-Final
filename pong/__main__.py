@@ -1,30 +1,41 @@
 import constants
 
-# from game.casting.cast import Cast
+from game.casting.cast import Cast
 # from game.casting.food import Food
-# from game.casting.score import Score
-# from game.casting.snake import Snake
-# from game.scripting.script import Script
-# from game.scripting.control_actors_action import ControlActorsAction
-# from game.scripting.move_actors_action import MoveActorsAction
-# from game.scripting.handle_collisions_action import HandleCollisionsAction
-# from game.scripting.draw_actors_action import DrawActorsAction
-# from game.directing.director import Director
-# from game.services.keyboard_service import KeyboardService
-# from game.services.video_service import VideoService
-# from game.shared.color import Color
-# from game.shared.point import Point
+from game.casting.score import Score
+from game.casting.ball import Ball
+from game.casting.paddle import Paddle
+from game.casting.point import Point
+from game.scripting.script import Script
+from game.scripting.control_actors_action import ControlActorsAction
+from game.scripting.move_actors_action import MoveActorsAction
+from game.scripting.handle_collisions_action import HandleCollisionsAction
+from game.scripting.draw_actors_action import DrawActorsAction
+from game.scripting.play_sound_action import PlaySoundAction
+from game.directing.director import Director
+from game.services.keyboard_service import KeyboardService
+from game.services.video_service import VideoService
+from game.services.audio_service import AudioService
+from game.shared.color import Color
+from game.shared.point import Point
 
 
 def main():
     
     # create the cast
     cast = Cast()
-    
+    cast.add_actor("paddle1", Paddle())
+    cast.add_actor("paddle2", Paddle())
+    cast.add_actor("score1", Score(Point(300,0)))
+    cast.add_actor("score2", Score(Point(400,0)))
+    cast.add_actor("ball", Ball())
+
+
     
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
+    #audio_service = AudioService()
 
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))

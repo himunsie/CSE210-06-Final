@@ -1,7 +1,6 @@
 import constants
 
 from game.casting.cast import Cast
-# from game.casting.food import Food
 from game.casting.score import Score
 from game.casting.ball import Ball
 from game.casting.paddle import Paddle
@@ -24,11 +23,11 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("paddle1", Paddle())
-    cast.add_actor("paddle2", Paddle())
+    cast.add_actor("paddle1", Paddle(Point(0, 250), constants.PADDLE_IMAGES))
+    cast.add_actor("paddle2", Paddle(Point(250,0), constants.PADDLE_IMAGES))
     cast.add_actor("score1", Score(Point(300,0)))
     cast.add_actor("score2", Score(Point(400,0)))
-    cast.add_actor("ball", Ball())
+    cast.add_actor("ball", Ball(constants.BALL_IMAGE))
 
 
     

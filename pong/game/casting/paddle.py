@@ -6,25 +6,16 @@ from game.casting.point import Point
 class Paddle(Actor):
     """A implement used to hit and bounce the ball in the game."""
     
-    def __init__(self, body, animation, debug = False):
+    def __init__(self, body):
         """Constructs a new Paddle.
         
         Args:Args:
             body: A new instance of Body.
-            debug: If it is being debugged. 
+            
         """
-        super().__init__(debug)
+        super().__init__()
         self._body = body
-        self._animation = animation #Do we need this?
-
-    def get_animation(self): #Does the paddle have animation???
-        """Gets the paddles's animation.
         
-        Returns:
-            An instance of Animation.
-        """
-        return self._animation
-
     def get_body(self):
         """Gets the paddle's body.
         

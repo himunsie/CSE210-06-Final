@@ -4,115 +4,75 @@ from game.shared.point import Point
 
 
 class Actor:
-    """A visible, moveable thing that participates in the game. 
-    
-    The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
-    space.
-
+    """A visible, moveable thing that participates in the game. The responsibility of Actor is to keep track of its appearance, position 
+    and velocity in 2d space.
+    Stereotype:
+        Information Holder
     Attributes:
-        _text (string): The text to display
-        _font_size (int): The font size to use.
-        _color (Color): The color of the text.
-        _position (Point): The screen coordinates.
-        _velocity (Point): The speed and direction.
+        _tag (string): The actor's tag.
+        _text (string): The textual representation of the actor.
+        _position (Point): The actor's position in 2d space.
+        _velocity (Point): The actor's speed and direction.
     """
 
-    def __init__(self):
-        """Constructs a new Actor."""
-        self._text = ""
-        self._font_size = 15
-        self._color = Color(255, 255, 255)
-        self._position = Point(0, 0)
-        self._velocity = Point(0, 0)
-
-    def get_color(self):
-        """Gets the actor's color as a tuple of three ints (r, g, b).
-        
-        Returns:
-            Color: The actor's text color.
-        """
-        return self._color
-
-    def get_font_size(self):
-        """Gets the actor's font size.
-        
-        Returns:
-            Point: The actor's font size.
-        """
-        return self._font_size
-
+    def __init__(self, position = Point(), size = Point(), velocity = Point()):
+        """The Class constructor"""
+        self._position = position
+        self._size = size
+        self._velocity = velocity
+    
     def get_position(self):
-        """Gets the actor's position in 2d space.
+        """Gets the Actors position.
         
         Returns:
-            Point: The actor's position in 2d space.
+            An instance of Point containing the x and y coordinates.
         """
         return self._position
-    
-    def get_text(self):
-        """Gets the actor's textual representation.
+
+    def get_size(self):
+        """Gets the actor's size.
         
         Returns:
-            string: The actor's textual representation.
+            An instance of Point containing the width and height.
         """
-        return self._text
+        return self._size
 
     def get_velocity(self):
-        """Gets the actor's speed and direction.
+        """Gets the actor's velocity.
         
         Returns:
-            Point: The actor's speed and direction.
+            An instance of Point containing the horizontal and vertical speed.
         """
         return self._velocity
-    
-    def move_next(self):
-        """Moves the actor to its next position according to its velocity. Will wrap the position 
-        from one side of the screen to the other when it reaches the given maximum x and y values.
-        
-        Args:
-            max_x (int): The maximum x value.
-            max_y (int): The maximum y value.
-        """
-        x = (self._position.get_x() + self._velocity.get_x()) % constants.MAX_X
-        y = (self._position.get_y() + self._velocity.get_y()) % constants.MAX_Y
-        self._position = Point(x, y)
 
-    def set_color(self, color):
-        """Updates the color to the given one.
+    # def get_rectangle(self):
+    #     """Gets the rectangle enclosing the body.
         
-        Args:
-            color (Color): The given color.
-        """
-        self._color = color
-
+    #     Returns:
+    #         An instance of Rectangle.
+    #     """
+    #     return Rectangle(self._position, self._size)
+        
     def set_position(self, position):
-        """Updates the position to the given one.
+        """Sets the position to the given value.
         
         Args:
-            position (Point): The given position.
+            position: An instance of Point.
         """
         self._position = position
-    
-    def set_font_size(self, font_size):
-        """Updates the font size to the given one.
+
+    def set_size(self, size):
+        """Sets the size to the given value.
         
         Args:
-            font_size (int): The given font size.
+            size: An instance of Point.
         """
-        self._font_size = font_size
-    
-    def set_text(self, text):
-        """Updates the text to the given value.
-        
-        Args:
-            text (string): The given value.
-        """
-        self._text = text
+        self._size = size
 
     def set_velocity(self, velocity):
-        """Updates the velocity to the given one.
+        """Sets the velocity to the given value.
         
         Args:
-            velocity (Point): The given velocity.
+            velocity: An instance of Point.
         """
         self._velocity = velocity

@@ -1,4 +1,4 @@
-from game.casting.color import Color
+from game.shared.color import Color
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -7,12 +7,15 @@ from game.casting.color import Color
 # GAME
 GAME_NAME = "Pong"
 FRAME_RATE = 60
+CAPTION = "PONG"
 
 # SCREEN
 SCREEN_WIDTH = 1040
 SCREEN_HEIGHT = 680
 CENTER_X = SCREEN_WIDTH / 2
 CENTER_Y = SCREEN_HEIGHT / 2
+MAX_X = 900
+MAX_Y = 600
 
 # FIELD
 FIELD_TOP = 60
@@ -21,14 +24,14 @@ FIELD_LEFT = 0
 FIELD_RIGHT = SCREEN_WIDTH
 
 # FONT
-FONT_FILE = #"batter/assets/fonts/zorque.otf"
-FONT_SMALL = 32
-FONT_LARGE = 48
+# FONT_FILE = #"batter/assets/fonts/zorque.otf"
+# FONT_SMALL = 32
+# FONT_LARGE = 48
 
 # SOUND
-BOUNCE_SOUND = #"batter/assets/sounds/boing.wav"
-WELCOME_SOUND = #"batter/assets/sounds/start.wav"
-OVER_SOUND = #"batter/assets/sounds/over.wav"
+# BOUNCE_SOUND = #"batter/assets/sounds/boing.wav"
+# WELCOME_SOUND = #"batter/assets/sounds/start.wav"
+# OVER_SOUND = #"batter/assets/sounds/over.wav"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -54,9 +57,9 @@ NEXT_LEVEL = 2
 IN_PLAY = 3
 GAME_OVER = 4
 
-# LEVELS
-LEVEL_FILE = #"batter/assets/data/level-{:03}.txt"
-BASE_LEVELS = 5
+# # LEVELS
+# LEVEL_FILE = #"batter/assets/data/level-{:03}.txt"
+# BASE_LEVELS = 5
 
 # -------------------------------------------------------------------------------------------------- 
 # SCRIPTING CONSTANTS
@@ -76,31 +79,31 @@ RELEASE = 6
 # -------------------------------------------------------------------------------------------------- 
 
 # STATS
-STATS_GROUP = "stats"
-DEFAULT_LIVES = 3
-MAXIMUM_LIVES = 5
+# STATS_GROUP = "stats"
+# DEFAULT_LIVES = 3
+# MAXIMUM_LIVES = 5
 
 # HUD
-HUD_MARGIN = 15
-LEVEL_GROUP = "level"
-LIVES_GROUP = "lives"
-SCORE_GROUP = "score"
-LEVEL_FORMAT = "LEVEL: {}"
-LIVES_FORMAT = "LIVES: {}"
-SCORE_FORMAT = "SCORE: {}"
+# HUD_MARGIN = 15
+# LEVEL_GROUP = "level"
+# LIVES_GROUP = "lives"
+# SCORE_GROUP = "score"
+# LEVEL_FORMAT = "LEVEL: {}"
+# LIVES_FORMAT = "LIVES: {}"
+# SCORE_FORMAT = "SCORE: {}"
 
 # BALL
 BALL_GROUP = "balls"
-BALL_IMAGE = #"batter/assets/images/000.png"
+BALL_IMAGE = "pong/assets/images/ball.png" #"batter/assets/images/000.png"
 BALL_WIDTH = 28
 BALL_HEIGHT = 28
 BALL_VELOCITY = 6
 
 # PADDLE
 PADDLE_GROUP = "paddles"
-PADDLE_IMAGES = [f"batter/assets/images/{n:03}.png" for n in range(100, 103)]
-PADDLE_WIDTH = 106
-PADDLE_HEIGHT = 28
+PADDLE_IMAGES = "pong/assets/images/paddle.png" #[f"pong/assets/images/{n:03}.png" for n in range(100, 103)]
+PADDLE_WIDTH = 28
+PADDLE_HEIGHT = 81
 PADDLE_RATE = 6
 PADDLE_VELOCITY = 7
 

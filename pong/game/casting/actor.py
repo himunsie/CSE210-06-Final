@@ -15,12 +15,19 @@ class Actor:
         _velocity (Point): The actor's speed and direction.
     """
 
-    def __init__(self, position = Point(), size = Point(), velocity = Point()):
+    def __init__(self,text, position, size, velocity):
         """The Class constructor"""
         self._position = position
         self._size = size
         self._velocity = velocity
+        self._text = text
+        self._font_size= 15
+        self._color = Color(255, 255, 255)
     
+    def get_color(self):
+        return self._color
+    def get_font_size(self):
+        return self._font_size
     def get_position(self):
         """Gets the Actors position.
         
@@ -44,6 +51,14 @@ class Actor:
             An instance of Point containing the horizontal and vertical speed.
         """
         return self._velocity
+    
+    def get_text(self):
+        """Gets the actor's textual representation.
+        
+        Returns:
+            string: The actor's textual representation.
+        """
+        return self._text
 
     # def get_rectangle(self):
     #     """Gets the rectangle enclosing the body.
@@ -76,3 +91,11 @@ class Actor:
             velocity: An instance of Point.
         """
         self._velocity = velocity
+
+    def set_text(self, text):
+        """Updates the text to the given value.
+        
+        Args:
+            text (string): The given value.
+        """
+        self._text = text

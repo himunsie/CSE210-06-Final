@@ -8,6 +8,7 @@ from game.shared.color import Color
 GAME_NAME = "Pong"
 FRAME_RATE = 60
 CAPTION = "PONG"
+PADDLE = "|\n|\n|"
 
 # SCREEN
 SCREEN_WIDTH = 1040

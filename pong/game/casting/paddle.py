@@ -14,7 +14,7 @@ class Paddle(Actor):
             image: a new instance of image
             
         """
-        super().__init__()
+        super().__init__(PADDLE,position,Point(0, 0),Point(0, 0))
         # self._body = body
         self._position = position
         self._image = image

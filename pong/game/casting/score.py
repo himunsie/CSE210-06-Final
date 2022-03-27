@@ -29,6 +29,7 @@ class Score(Actor):
             points (int): The points to add.
         """
         self._points += 1
-        self.set_text(f"{self._points}")
+        self.set_text(f"Score: {self._points}")
+        
     def total_points(self):
         return self._points

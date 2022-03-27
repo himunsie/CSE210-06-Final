@@ -8,13 +8,12 @@ class MoveActorsAction(Action):
         """Executes the move actors action.
 
         Args:
-            cast (Cast): The cast of Actors in the game.
-            script (Script): The script of Actions in the game.
+        cast (Cast): The cast of Actors in the game.
+        script (Script): The script of Actions in the game.
         """
 # 1) get all the actors from the cast
-        actors = cast.get_all_actors()
+        # actors = cast.get_all_actors()
 # 2) loop through the actors
-        for actor in actors:
+        # for actor in actors:
 # 3) call the move_next() method on each actor
-            actor.move_next()
-              
+                # actor.move_next()

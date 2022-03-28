@@ -9,6 +9,7 @@ from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
 from game.scripting.handle_collisions_action import HandleCollisionsAction
+from game.scripting.reset_game import ResetActors
 from game.scripting.draw_actors_action import DrawActorsAction
 # from game.scripting.play_sound_action import PlaySoundAction
 from game.directing.director import Director
@@ -23,10 +24,10 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("paddle1", Paddle(Point(20, 290), constants.PADDLE_IMAGES))
-    cast.add_actor("paddle2", Paddle(Point(880,290), constants.PADDLE_IMAGES))
-    cast.add_actor("score1", Score(Point(100,0)))
-    cast.add_actor("score2", Score(Point(700,0)))
+    cast.add_actor("paddle1", Paddle(Point(20, 260), constants.PADDLE_IMAGES))
+    cast.add_actor("paddle2", Paddle(Point(880,260), constants.PADDLE_IMAGES))
+    cast.add_actor("score1", Score(Point(100,5),"Player 1"))
+    cast.add_actor("score2", Score(Point(550,5),"Player 2"))
     cast.add_actor("ball", Ball(constants.BALL_IMAGE))
 
 
@@ -39,8 +40,9 @@ def main():
     script = Script()
     # script.add_action("input", ControlActorsAction(keyboard_service))
     # script.add_action("update", MoveActorsAction())
-    # script.add_action("update", HandleCollisionsAction())
+    script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))
+    script.add_action("reset", ResetActors())
     
     director = Director(video_service)
     director.start_game(cast, script)

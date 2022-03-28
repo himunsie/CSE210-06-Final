@@ -2,6 +2,9 @@ import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
+from game.scripting.reset_game import ResetActors
+from game.casting.score import Score
+# from game.scripting.restart_game import execute
 
 class HandleCollisionsAction(Action):
     """
@@ -25,11 +28,12 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        # if not self._is_game_over:
+        if not self._is_game_over:
             #self._handle_food_collision(cast)
             # self._handle_grow_tail(cast)
             # self._handle_segment_collision(cast)
             # self._handle_game_over(cast)
+            self._out_of_bounds(cast)
 
     # def _handle_food_collision(self, cast):
     #     """Updates the score nd moves the food if the snake collides with the food.
@@ -53,41 +57,48 @@ class HandleCollisionsAction(Action):
     #         snake.grow_tail(1)
     #         score.add_points(points)
     #         food.reset()
-   
-    
 
-    def _handle_ball_collision(self, cast):
-        """Sets the game over flag if the snake collides with one of its segments.
+        
+    
+    def _out_of_bounds(self, cast):
+        """Reset the game to initial position if one of the players scores a point 
         
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        # snake = cast.get_first_actor("snakes")
-        # head = snake.get_segments()[0]
-        # segments = snake.get_segments()[1:] 
+        reset = ResetActors()
+        ball = cast.get_first_actor("ball")
+        score1 = cast.get_first_actor("score1")
+        score2 = cast.get_first_actor("score2")
 
-        # snake2 = cast.get_first_actor("snakes2")
-        # head2 = snake2.get_segments()[0]
-        # segments2 = snake2.get_segments()[1:]
-
-        # # score = cast.get_first_actor("scores")
-        # # score_2 = cast.get_first_actor("scores_2")
-
-        # for segment in segments:
-        #     if head2.get_position().equals(segment.get_position()):
-                
-        #         self._is_game_over = True 
-                
-        #         #score.add_points(1)      
-
-        # for segment2 in segments2:
-        #     if head.get_position().equals(segment2.get_position()):
-               
-        #         self._is_game_over = True
-                
-        #         # score_2.add_points(1) 
-        
-        
+        if ball.get_position().get_x() <= 0:
+            score2.add_points()
+            self._winning_set(score1,score2)
+            reset.execute(cast)
+        elif ball.get_position().get_x()>= 890:    
+            score1.add_points()
+            self._winning_set(score1,score2)
+            reset.execute(cast)
+    
+    def _winning_set(self,score1, score2):
+        if score1.get_points() == 5: #Lossing the set the players change the side
+                score1.reset_score()
+                score2.reset_score()
+                score1.win_set()
+                temp = score1.get_position()
+                score1.set_position(score2.get_position())
+                score2.set_position(temp)
+                score1.update_score()
+                score2.update_score()
+        elif score2.get_points() == 5: #Lossing the set the players change the side
+                score1.reset_score()
+                score2.reset_score()
+                score2.win_set()
+                temp = score1.get_position()
+                score1.set_position(score2.get_position())
+                score2.set_position(temp)
+                score1.update_score()
+                score2.update_score()
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         

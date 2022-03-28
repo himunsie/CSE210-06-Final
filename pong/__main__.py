@@ -9,7 +9,7 @@ from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
 from game.scripting.handle_collisions_action import HandleCollisionsAction
-from game.scripting.reset_game import ResetActors
+from game.scripting.reset_set import ResetActors
 from game.scripting.draw_actors_action import DrawActorsAction
 # from game.scripting.play_sound_action import PlaySoundAction
 from game.directing.director import Director

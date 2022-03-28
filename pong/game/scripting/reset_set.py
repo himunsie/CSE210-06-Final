@@ -19,6 +19,7 @@ class ResetActors(Action):
         paddle1[0].set_position(Point(20, 260))
         paddle2[0].set_position(Point(880,260))
         ball[0].set_position(Point(430, 280))
+        
 
 
 

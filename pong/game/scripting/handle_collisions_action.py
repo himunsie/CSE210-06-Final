@@ -2,7 +2,8 @@ import constants
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
-from game.scripting.reset_game import ResetActors
+from game.scripting.reset_set import ResetActors
+from game.scripting.reset_point import ResetPoint
 from game.casting.score import Score
 # from game.scripting.restart_game import execute
 
@@ -61,26 +62,45 @@ class HandleCollisionsAction(Action):
         
     
     def _out_of_bounds(self, cast):
-        """Reset the game to initial position if one of the players scores a point 
-        
+        """Add points to the player who scores. Reset the game to initial position if one of the players scores 5 pints 
+
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        reset = ResetActors()
+        
         ball = cast.get_first_actor("ball")
         score1 = cast.get_first_actor("score1")
         score2 = cast.get_first_actor("score2")
+        reset_point = ResetPoint()
 
         if ball.get_position().get_x() <= 0:
-            score2.add_points()
-            self._winning_set(score1,score2)
-            reset.execute(cast)
+            if score1.get_position().get_x() == 100:
+                print("yes")
+                score2.add_points()
+            elif score1.get_position().get_x() ==550:
+                score1.add_points()
+            reset_point.right(cast)
+            self._winning_set(cast, score1, score2)
+            
         elif ball.get_position().get_x()>= 890:    
-            score1.add_points()
-            self._winning_set(score1,score2)
-            reset.execute(cast)
+            if score1.get_position().get_x() == 100:
+                score1.add_points()
+            elif score1.get_position().get_x() ==550:
+                score2.add_points()
+            reset_point.left(cast)
+            self._winning_set(cast, score1, score2)
+            
     
-    def _winning_set(self,score1, score2):
+    def _winning_set(self, cast, score1, score2):
+        """Checks if one of the players won the set (scores 5 points)
+
+        Args:
+            cast (Cast): The cast of Actors in the game.
+            score1 (Score): The score of player 1.
+            score2 (Score): The score of player 2.
+        """
+        reset = ResetActors()
+
         if score1.get_points() == 5: #Lossing the set the players change the side
                 score1.reset_score()
                 score2.reset_score()
@@ -90,6 +110,7 @@ class HandleCollisionsAction(Action):
                 score2.set_position(temp)
                 score1.update_score()
                 score2.update_score()
+                reset.execute(cast)
         elif score2.get_points() == 5: #Lossing the set the players change the side
                 score1.reset_score()
                 score2.reset_score()
@@ -99,6 +120,8 @@ class HandleCollisionsAction(Action):
                 score2.set_position(temp)
                 score1.update_score()
                 score2.update_score()
+                reset.execute(cast)
+
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         

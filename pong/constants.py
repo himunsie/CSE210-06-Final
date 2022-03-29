@@ -1,4 +1,5 @@
 from game.shared.color import Color
+from game.services.raylib.raylib_physics_service import RaylibPhysicsService
 
 # -------------------------------------------------------------------------------------------------- 
 # GENERAL GAME CONSTANTS
@@ -30,9 +31,9 @@ FIELD_RIGHT = SCREEN_WIDTH
 # FONT_LARGE = 48
 
 # SOUND
-# BOUNCE_SOUND = #"batter/assets/sounds/boing.wav"
-# WELCOME_SOUND = #"batter/assets/sounds/start.wav"
-# OVER_SOUND = #"batter/assets/sounds/over.wav"
+BOUNCE_SOUND = "pong/assets/sounds/boing.wav"
+WELCOME_SOUND = "pong/assets/sounds/start.wav"
+OVER_SOUND = "pong/assets/sounds/over.wav"
 
 # TEXT
 ALIGN_CENTER = 0
@@ -107,6 +108,7 @@ PADDLE_WIDTH = 28
 PADDLE_HEIGHT = 81
 PADDLE_RATE = 6
 PADDLE_VELOCITY = 7
+PHYSICS_SERVICE = RaylibPhysicsService()
 
 
 # DIALOG

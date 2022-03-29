@@ -15,7 +15,7 @@ class Ball(Actor):
             image: A new instance of Image.
             
         """
-        super().__init__("*",Point(430, 280), Point(0, 0), Point(0, 0))
+        super().__init__("*",Point(430, 280), Point(0, 0), Point(1, 1))
         # self._body = body
         self._image = image
 

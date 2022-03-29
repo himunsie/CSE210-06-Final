@@ -20,7 +20,7 @@ class KeyboardService:
         self._keys['s'] = pyray.KEY_S
         self._keys['d'] = pyray.KEY_D
 
-        self._keys['i'] = pyray.KEY_I
+        self._keys['m'] = pyray.KEY_M
         self._keys['j'] = pyray.KEY_J
         self._keys['k'] = pyray.KEY_K
         self._keys['l'] = pyray.KEY_L

@@ -19,9 +19,8 @@ class ControlActorsAction(Action):
         Args:
             keyboard_service (KeyboardService): An instance of KeyboardService.
         """
-        # self._keyboard_service = keyboard_service
-        # self.snake_direction = Point(constants.CELL_SIZE, 0)
-        # self.snake2_direction = Point(constants.CELL_SIZE, 0)
+        self._keyboard_service = keyboard_service
+        
 
     def execute(self, cast, script):
         """Executes the control actors action.
@@ -30,40 +29,28 @@ class ControlActorsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
-        # # left
-        # if self._keyboard_service.is_key_down('a'):
-        #     self.snake_direction = Point(-constants.CELL_SIZE, 0)
-        
-        # # right
-        # if self._keyboard_service.is_key_down('d'):
-        #     self.snake_direction = Point(constants.CELL_SIZE, 0)
-        
+        paddle1 = cast.get_first_actor("paddle1")
         # # up
-        # if self._keyboard_service.is_key_down('w'):
-        #     self.snake_direction = Point(0, -constants.CELL_SIZE)
+        if self._keyboard_service.is_key_down('a'):
+            paddle1.move_up()
+           
         
         # # down
-        # if self._keyboard_service.is_key_down('s'):
-        #     self.snake_direction = Point(0, constants.CELL_SIZE)
+        elif self._keyboard_service.is_key_down('z'):
+            paddle1.move_down()
+            
+        else:
+            paddle1.stop_moving()
         
-        # snake = cast.get_first_actor("snakes")
-        # snake.turn_head(self.snake_direction)
-        
-        # # left
-        # if self._keyboard_service.is_key_down('j'):
-        #     self.snake2_direction = Point(-constants.CELL_SIZE, 0)
-        
-        # # right
-        # if self._keyboard_service.is_key_down('l'):
-        #     self.snake2_direction = Point(constants.CELL_SIZE, 0)
-        
+        paddle2 = cast.get_first_actor("paddle2")
         # # up
-        # if self._keyboard_service.is_key_down('i'):
-        #     self.snake2_direction = Point(0, -constants.CELL_SIZE)
+        if self._keyboard_service.is_key_down('k'):
+            paddle2.move_up()
+            
         
         # # down
-        # if self._keyboard_service.is_key_down('k'):
-        #     self.snake2_direction = Point(0, constants.CELL_SIZE)
-        
-        # snake2 = cast.get_first_actor("snakes2")
-        # snake2.turn_head(self.snake2_direction)
+        elif self._keyboard_service.is_key_down('m'):
+            paddle2.move_down()
+           
+        else:
+            paddle2.stop_moving()

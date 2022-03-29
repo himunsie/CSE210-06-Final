@@ -11,7 +11,7 @@ from game.scripting.move_actors_action import MoveActorsAction
 from game.scripting.handle_collisions_action import HandleCollisionsAction
 from game.scripting.reset_set import ResetActors
 from game.scripting.draw_actors_action import DrawActorsAction
-# from game.scripting.play_sound_action import PlaySoundAction
+from game.scripting.play_sound_action import PlaySoundAction
 from game.directing.director import Director
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
@@ -35,10 +35,10 @@ def main():
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
-    #audio_service = AudioService()
+    audio_service = AudioService()
 
     script = Script()
-    # script.add_action("input", ControlActorsAction(keyboard_service))
+    script.add_action("input", ControlActorsAction(keyboard_service))
     # script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))

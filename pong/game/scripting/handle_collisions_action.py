@@ -121,6 +121,7 @@ class HandleCollisionsAction(Action):
                 score1.update_score()
                 score2.update_score()
                 reset.execute(cast)
+             
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.

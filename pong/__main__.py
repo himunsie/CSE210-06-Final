@@ -39,7 +39,7 @@ def main():
 
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))
-    # script.add_action("update", MoveActorsAction())
+    script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))
     script.add_action("reset", ResetActors())

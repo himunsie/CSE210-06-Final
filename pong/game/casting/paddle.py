@@ -44,13 +44,13 @@ class Paddle(Actor):
     def move_up(self):
         """Moves the paddle up"""
         
-        velocity = Point(-PADDLE_VELOCITY, 0)
+        velocity = Point(0, -PADDLE_VELOCITY)
         self.set_velocity(velocity)
         
     def move_down(self):
         """Moves the paddle down"""
         
-        velocity = Point(PADDLE_VELOCITY, 0)
+        velocity = Point(0, PADDLE_VELOCITY)
         self.set_velocity(velocity)
     
     def stop_moving(self):

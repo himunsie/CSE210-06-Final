@@ -15,7 +15,7 @@ class KeyboardService:
         """Constructs a new KeyboardService."""
         self._keys = {}
         
-        self._keys['w'] = pyray.KEY_W
+        self._keys['z'] = pyray.KEY_Z
         self._keys['a'] = pyray.KEY_A
         self._keys['s'] = pyray.KEY_S
         self._keys['d'] = pyray.KEY_D

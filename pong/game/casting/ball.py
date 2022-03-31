@@ -15,25 +15,25 @@ class Ball(Actor):
             image: A new instance of Image.
             
         """
-        super().__init__("*",Point(430, 280), Point(0, 0), Point(1, 1))
+        super().__init__("*",Point(430, 280), Point(0, 0), Point(8, 8))
         # self._body = body
         self._image = image
 
     def bounce_x(self):
         """Bounces the ball in the x direction."""
-        velocity = self._body.get_velocity()
+        velocity = self.get_velocity()
         rn = random.uniform(0.9, 1.1)
-        vx = velocity.get_x() * rn * -1
+        vx = round(velocity.get_x() * rn * -1)
         vy = velocity.get_y()
         velocity = Point(vx, vy)
         self.set_velocity(velocity)
 
     def bounce_y(self):
         """Bounces the ball in the y direction."""
-        velocity = self._body.get_velocity()
+        velocity = self.get_velocity()
         rn = random.uniform(0.9, 1.1)
         vx = velocity.get_x()
-        vy = velocity.get_y() * rn * -1 
+        vy = round(velocity.get_y() * rn * -1)
         velocity = Point(vx, vy)
         self.set_velocity(velocity)
 

@@ -19,6 +19,7 @@ class ResetPoint(Action):
         paddle1[0].set_position(Point(20, 260))
         paddle2[0].set_position(Point(880,260))
         ball[0].set_position(Point(30, 280))
+        ball[0].set_velocity(Point(8,8))
 
     def right(self, cast):
         """Executes the reset actors action.
@@ -34,3 +35,4 @@ class ResetPoint(Action):
         paddle1[0].set_position(Point(20, 260))
         paddle2[0].set_position(Point(880,260))
         ball[0].set_position(Point(870, 280))
+        ball[0].set_velocity(Point(8,8))

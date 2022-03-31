@@ -5,6 +5,8 @@ from game.shared.point import Point
 from game.scripting.reset_set import ResetActors
 from game.scripting.reset_point import ResetPoint
 from game.casting.score import Score
+from game.casting.sound import Sound
+#from game.services.audio_service import AudioService
 # from game.scripting.restart_game import execute
 
 class HandleCollisionsAction(Action):
@@ -21,6 +23,7 @@ class HandleCollisionsAction(Action):
     def __init__(self):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
+        #self._audio_service = audio_service   
 
     def execute(self, cast, script):
         """Executes the handle collisions action.
@@ -29,36 +32,42 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
         """
+        ball = cast.get_first_actor("ball")
+        positionball = ball.get_position()
+        xball = positionball.get_x()
+        yball = positionball.get_y()
+        paddle1 = cast.get_first_actor("paddle1")
+        position_paddle1 = paddle1.get_position()
+        xpaddle1 = position_paddle1.get_x()
+        ypaddle1 = position_paddle1.get_y()
+        paddle2 = cast.get_first_actor("paddle2")
+        position_paddle2 = paddle2.get_position()
+        xpaddle2 = position_paddle2.get_x()
+        ypaddle2 = position_paddle2.get_y()     
+        bounce_sound = Sound(constants.BOUNCE_SOUND)
+        over_sound = Sound(constants.OVER_SOUND)
+                
+        if yball < 0:
+            ball.bounce_y()
+            #self._audio_service.play_sound(bounce_sound)
+
+        elif yball >= (constants.SCREEN_HEIGHT - 10):
+            ball.bounce_y()
+            #self._audio_service.play_sound(bounce_sound)
+
+        if xball < xpaddle1 and (yball + 10 > ypaddle1 and yball < ypaddle1 + 60) :
+            ball.bounce_x()
+
+        elif xball + 10 > xpaddle2 and (yball + 10 > ypaddle2 and yball < ypaddle2 + 60):
+            ball.bounce_x()    
+        
+
         if not self._is_game_over:
             #self._handle_food_collision(cast)
             # self._handle_grow_tail(cast)
             # self._handle_segment_collision(cast)
             # self._handle_game_over(cast)
             self._out_of_bounds(cast)
-
-    # def _handle_food_collision(self, cast):
-    #     """Updates the score nd moves the food if the snake collides with the food.
-        
-    #     Args:
-    #         cast (Cast): The cast of Actors in the game.
-    #     """
-    #     score = cast.get_first_actor("scores")
-    #     food = cast.get_first_actor("foods")
-    #     snake = cast.get_first_actor("snakes")
-    #     snake2 = cast.get_first_actor("snakes2")
-    #     head = snake.get_head()
-    #     head2 = snake2.get_head()
-    #     if head2.get_position().equals(food.get_position()):
-    #         points = food.get_points()
-    #         snake.grow_tail(1)
-    #         score.add_points(points)
-    #         food.reset()
-    #     if head.get_position().equals(food.get_position()):
-    #         points = food.get_points()
-    #         snake.grow_tail(1)
-    #         score.add_points(points)
-    #         food.reset()
-
         
     
     def _out_of_bounds(self, cast):

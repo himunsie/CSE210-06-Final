@@ -24,14 +24,16 @@ class MoveActorsAction(Action):
 
         velocity = paddle1.get_velocity()
         position = paddle1.get_position()
-        x = position.get_x()
+        y = position.get_y()
         
         position = position.add(velocity)
 
-        if x < 0:
-            position = Point(0, position.get_y())
-        elif x > (1040 - 28):
-            position = Point(1040 - 28, position.get_y())
+        paddle_limit  = constants.SCREEN_HEIGHT - 60
+
+        if y < 0:
+            position = Point(position.get_x(), 0)
+        elif y > (paddle_limit):
+            position = Point(position.get_x(), paddle_limit)
             
         paddle1.set_position(position)
 
@@ -39,13 +41,13 @@ class MoveActorsAction(Action):
         
         velocity = paddle2.get_velocity()
         position = paddle2.get_position()
-        x = position.get_x()
+        y = position.get_y()
         
         position = position.add(velocity)
 
-        if x < 0:
-            position = Point(0, position.get_y())
-        elif x > (1040 - 28):
-            position = Point(1040 - 28, position.get_y())
+        if y < 0:
+            position = Point(position.get_x(), 0)
+        elif y > (paddle_limit):
+            position = Point(position.get_x(), paddle_limit)
             
         paddle2.set_position(position)

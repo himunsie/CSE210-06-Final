@@ -16,8 +16,8 @@ class ResetPoint(Action):
         paddle2 = cast.get_actors("paddle2")
         ball = cast.get_actors("ball")
 
-        paddle1[0].set_position(Point(20, 260))
-        paddle2[0].set_position(Point(880,260))
+        paddle1[0].set_position(Point(15, 260))
+        paddle2[0].set_position(Point(885,260))
         ball[0].set_position(Point(30, 280))
         ball[0].set_velocity(Point(8,8))
 
@@ -32,7 +32,7 @@ class ResetPoint(Action):
         paddle2 = cast.get_actors("paddle2")
         ball = cast.get_actors("ball")
 
-        paddle1[0].set_position(Point(20, 260))
-        paddle2[0].set_position(Point(880,260))
+        paddle1[0].set_position(Point(15, 260))
+        paddle2[0].set_position(Point(885,260))
         ball[0].set_position(Point(870, 280))
         ball[0].set_velocity(Point(8,8))

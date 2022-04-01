@@ -25,8 +25,8 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("paddle1", Paddle(Point(15, 260), constants.PADDLE))
-    cast.add_actor("paddle2", Paddle(Point(885,260), constants.PADDLE))
+    cast.add_actor("paddle1", Paddle(Point(14, 260), constants.PADDLE))
+    cast.add_actor("paddle2", Paddle(Point(886,260), constants.PADDLE))
     cast.add_actor("score1", Score(Point(100,5),"Player 1"))
     cast.add_actor("score2", Score(Point(550,5),"Player 2"))
     cast.add_actor("ball", Ball(constants.BALL_IMAGE))

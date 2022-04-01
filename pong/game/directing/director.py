@@ -1,3 +1,4 @@
+
 class Director:
     """A person who directs the game. 
     
@@ -15,6 +16,7 @@ class Director:
         """
         self._video_service = video_service
         
+        
     def start_game(self, cast, script):
         """Starts the game using the given cast and script. Runs the main game loop.
 
@@ -22,11 +24,13 @@ class Director:
             cast (Cast): The cast of actors.
             script (Script): The script of actions.
         """
+        
         self._video_service.open_window()
         while self._video_service.is_window_open():
             self._execute_actions("input", cast, script)
             self._execute_actions("update", cast, script)
             self._execute_actions("output", cast, script)
+            
         self._video_service.close_window()
 
     def _execute_actions(self, group, cast, script):

@@ -1,6 +1,7 @@
 from game.scripting.action import Action
 from game.shared.point import Point
 
+
 class ResetPoint(Action):
 # Implement MoveActorsAction class here! 
 
@@ -20,6 +21,8 @@ class ResetPoint(Action):
         paddle2[0].set_position(Point(885,260))
         ball[0].set_position(Point(30, 280))
         ball[0].set_velocity(Point(8,8))
+        
+        
 
     def right(self, cast):
         """Executes the reset actors action.

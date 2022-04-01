@@ -6,6 +6,9 @@ from game.scripting.reset_set import ResetActors
 from game.scripting.reset_point import ResetPoint
 from game.casting.score import Score
 from game.casting.sound import Sound
+
+
+
 #from game.services.audio_service import AudioService
 # from game.scripting.restart_game import execute
 
@@ -23,6 +26,7 @@ class HandleCollisionsAction(Action):
     def __init__(self):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
+        
         #self._audio_service = audio_service   
 
     def execute(self, cast, script):
@@ -63,11 +67,10 @@ class HandleCollisionsAction(Action):
         
 
         if not self._is_game_over:
-            #self._handle_food_collision(cast)
-            # self._handle_grow_tail(cast)
-            # self._handle_segment_collision(cast)
-            # self._handle_game_over(cast)
             self._out_of_bounds(cast)
+            self._handle_game_over(cast)
+            
+                
         
     
     def _out_of_bounds(self, cast):
@@ -83,22 +86,16 @@ class HandleCollisionsAction(Action):
         reset_point = ResetPoint()
 
         if ball.get_position().get_x() <= 0:
-            if score1.get_position().get_x() == 100:
-                print("yes")
-                score2.add_points()
-            elif score1.get_position().get_x() ==550:
-                score1.add_points()
+            score2.add_points()
             reset_point.right(cast)
             self._winning_set(cast, score1, score2)
             
         elif ball.get_position().get_x()>= 890:    
-            if score1.get_position().get_x() == 100:
-                score1.add_points()
-            elif score1.get_position().get_x() ==550:
-                score2.add_points()
+            score1.add_points()
             reset_point.left(cast)
             self._winning_set(cast, score1, score2)
-            
+
+        
     
     def _winning_set(self, cast, score1, score2):
         """Checks if one of the players won the set (scores 5 points)
@@ -110,27 +107,24 @@ class HandleCollisionsAction(Action):
         """
         reset = ResetActors()
 
-        if score1.get_points() == 5: #Lossing the set the players change the side
+        if score1.get_points() == 11: #Lossing the set 
                 score1.reset_score()
                 score2.reset_score()
                 score1.win_set()
-                temp = score1.get_position()
-                score1.set_position(score2.get_position())
-                score2.set_position(temp)
+                
                 score1.update_score()
                 score2.update_score()
                 reset.execute(cast)
-        elif score2.get_points() == 5: #Lossing the set the players change the side
+        elif score2.get_points() == 11: #Lossing the set 
                 score1.reset_score()
                 score2.reset_score()
                 score2.win_set()
-                temp = score1.get_position()
-                score1.set_position(score2.get_position())
-                score2.set_position(temp)
+                
                 score1.update_score()
                 score2.update_score()
                 reset.execute(cast)
-             
+        if score1.get_set() == 3 or score2.get_set() == 3:
+            self._is_game_over = True
 
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
@@ -138,24 +132,14 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        # if self._is_game_over:
-        #     snake = cast.get_first_actor("snakes")
-        #     segments = snake.get_segments()
-        #     snake2 = cast.get_first_actor("snakes")
-        #     segments2 = snake2.get_segments()
-        #     #food = cast.get_first_actor("foods")
+        score1 = cast.get_first_actor("score1")
+        if self._is_game_over:
+            message = cast.get_first_actor("message")
+            if score1.get_set() == 3:
+                message.set_text("Player 1 wins!")
+            else:
+                message.set_text("Player 2 wins!")
 
-        #     x = int(constants.MAX_X / 2)
-        #     y = int(constants.MAX_Y / 2)
-        #     position = Point(x, y)
+            ball = cast.get_first_actor("ball")
+            ball.set_velocity(Point(0,0))
 
-        #     message = Actor()
-        #     message.set_text("Game Over!")
-        #     message.set_position(position)
-        #     cast.add_actor("messages", message)
-
-        #     for segment in segments:
-        #         segment.set_color(constants.WHITE)
-        #     #food.set_color(constants.WHITE)
-        #     for segment2 in segments2:
-        #         segment2.set_color(constants.WHITE)

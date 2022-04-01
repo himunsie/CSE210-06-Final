@@ -18,6 +18,7 @@ from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 from game.services.audio_service import AudioService
 from game.shared.color import Color
+from game.casting.actor import Actor
 from game.shared.point import Point
 
 
@@ -30,13 +31,15 @@ def main():
     cast.add_actor("score1", Score(Point(100,5),"Player 1"))
     cast.add_actor("score2", Score(Point(550,5),"Player 2"))
     cast.add_actor("ball", Ball(constants.BALL_IMAGE))
+    position = Point(int(constants.MAX_X / 2)-60, int(constants.MAX_Y / 2))
+    cast.add_actor("message", Actor("", position, Point(10,10), Point(0,0)))
 
 
     
     # start the game
     keyboard_service = KeyboardService()
     video_service = VideoService()
-   #audio_service = AudioService()
+    #audio_service = AudioService()
 
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))

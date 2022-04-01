@@ -41,6 +41,8 @@ class Score(Actor):
     def win_set(self):
         self._set += 1
         self.update_score()
+    def get_set(self):
+        return self._set
 
     def reset_score(self):
         self._points = 0

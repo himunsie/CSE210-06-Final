@@ -1,6 +1,5 @@
 from game.scripting.action import Action
 
-
 class DrawActorsAction(Action):
     """
     An output action that draws all the actors.
@@ -32,7 +31,7 @@ class DrawActorsAction(Action):
         paddle1 = cast.get_first_actor("paddle1")
         paddle2 = cast.get_first_actor("paddle2")
         ball = cast.get_first_actor("ball")
-        
+        message = cast.get_first_actor("message")
 
         self._video_service.clear_buffer()
         self._video_service.draw_actors(paddle1)
@@ -40,4 +39,9 @@ class DrawActorsAction(Action):
         self._video_service.draw_actor(score)
         self._video_service.draw_actor(score2)
         self._video_service.draw_actors(ball)
+        self._video_service.draw_actors(message)
         self._video_service.flush_buffer()
+
+        
+        
+        

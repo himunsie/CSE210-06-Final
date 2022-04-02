@@ -1,9 +1,9 @@
 # Pong
 Pong is a two-dimensional sports game that simulates table tennis. The player controls an in-game paddle by moving it vertically across the left or right side of the screen. They can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth. The goal is for each player to reach eleven points before the opponent; points are earned when one fails to return the ball to the other.
 
-# Game Rules
+## Game Rules
 Pong is played according to the following rules.
-Players can move paddle up and down. Player one moves using the A and Z keys. Player two moves using the K and M keys. Each player moves their paddle up and down to hit the ball back to the opposite side. If a player fails to return the ball to the other player, the opponent earns a point. First player to score 11 points wins the game. A "Game Over" message is displayed in the middle of the screen.
+Players can move paddle up and down. Player one moves using the A and Z keys. Player two moves using the K and M keys. Each player moves their paddle up and down to hit the ball back to the opposite side. If a player fails to return the ball to the other player, the opponent earns a point. First player to score 11 points wins the set. Game is over when a player wins 2 sets. 
 
 ## Getting Started
 ---
@@ -41,4 +41,6 @@ root                    (project root folder)
 
 ## Authors
 ---
-* Heidi Munson (Heidi Munson (mun21014@byui.edu)
+* Heidi Munson  (mun21014@byui.edu)
+* Kelly Nebeker (bnknebeker@gmail.com)
+* Armando Martinez (mar21095@byui.edu)
